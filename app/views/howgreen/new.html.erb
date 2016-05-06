@@ -1,0 +1,15 @@
+<%= form_for :pipeline, url: "create", method: :get do |f| %>
+  <p>
+    <%= f.label :concourse_url %><br>
+    <%= f.text_field :concourse_url %>
+  </p>
+ 
+  <p>
+    <%= f.label :pipeline_name %><br>
+    <%= f.text_area :pipeline_name %>
+  </p>
+ 
+  <p>
+    <%= f.submit%>
+  </p>
+<% end %>
