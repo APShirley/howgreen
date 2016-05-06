@@ -29,12 +29,12 @@ class ApplicationController < ActionController::Base
 
 		pipeline_status = pipeline_status(failed, succeeded)
 		if pipeline_status == "green"
-			giphy_url = "http://media0.giphy.com/media/Hq2XDestpCXq8/giphy.webp"
+			giphy_url = "http://media0.giphy.com/media/Hq2XDestpCXq8/giphy.gif"
 		else
 		  giphy_url = "http://api.giphy.com/v1/gifs/search?q=#{pipeline_status}\&api_key=dc6zaTOxFJmzC\&rating=g"
 			giphy_response = Net::HTTP.get_response(URI.parse(giphy_url))
 			giphy_json = JSON.parse(giphy_response.body)
-			giphy_url = giphy_json["data"].sample["images"]["original"]["webp"]
+			giphy_url = giphy_json["data"].sample["images"]["original"]["url"]
 		end
 
 		render inline: "<style>html { 
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 }
 </style>
 <script>
-setTimeout(function() {location.reload()}, 20000);
+setTimeout(function() {location.reload()}, 8000);
 </script>
 "
   end
